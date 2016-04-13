@@ -1,8 +1,10 @@
 package com.example.hapifhir.client;
 
 import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.model.api.Bundle;
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 import ca.uhn.fhir.rest.client.IGenericClient;
+import ca.uhn.fhir.rest.gclient.StringClientParam;
 
 /*
  * @author jyang
@@ -19,21 +21,27 @@ public class DemoClient {
 		
 		Patient patient = client.read()
                 .resource(Patient.class)
-                .withId("966682")
+                .withId("5401")
                 .execute();
-		
 		String encoded = ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(patient);
+		System.out.println("\n\nGet patient by id  - " + encoded + "\n\n");
+		
+		
+//		Bundle bundle = client.search().forResource(Patient.class)
+//				.where(new StringClientParam("_id").matches().value("5149"))
+//				.execute();
+//		
+		
 				
 		
-//		ca.uhn.fhir.model.api.Bundle patients = client
-//			      .search()
-//			      .forResource(Patient.class)
-//			      .where(Patient.FAMILY.matches().value("Anwendertreffen"))
-//			      .execute();
-//		
-//		String encoded = ctx.newXmlParser().setPrettyPrint(true).encodeBundleToString(patients);
+		ca.uhn.fhir.model.api.Bundle patients = client
+			      .search()
+			      .forResource(Patient.class)
+			      .where(Patient.FAMILY.matches().value("Bernhart"))
+			      .execute();
 		
-		System.out.println("Get patients - " + encoded);
+		encoded = ctx.newXmlParser().setPrettyPrint(true).encodeBundleToString(patients);
+		System.out.println("\n\nGet patient by name - " + encoded + "\n\n");
 		
 	}
 
