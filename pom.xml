@@ -8,7 +8,7 @@
   <name>HapiFhirClientDemo Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
-  	<hapi-fhir-ver>1.3</hapi-fhir-ver>
+  	<hapi-fhir-ver>5.0.1</hapi-fhir-ver>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-compiler-plugin-version>2.3.2</maven-compiler-plugin-version>
 	<maven-war-plugin-version>2.3</maven-war-plugin-version>
